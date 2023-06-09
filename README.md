@@ -1,5 +1,5 @@
-# apollo
-welcome to apollo formally known as Tamir or Project Tamir. 
+# Apollo
+Welcome to apollo formally known as Tamir or Project Tamir. 
 
-#Table of contents
+## Table of contents
 coming soon
