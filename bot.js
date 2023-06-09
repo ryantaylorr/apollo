@@ -1,19 +1,21 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ReactionRole } = require("discordjs-reaction-role");
-const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, EmbedBuilder, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
 const { token } = require('./config.json');
 
 const client = new Client({ 
 	partials: [Partials.Message, Partials.Reaction],
 	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions] });
-const configuration = [
+
+	const configuration = [
 	{
 		messageId: "1043253026091188294",
 		reaction: "✅",
 		roleId: "1043224442391760948",
 	},
 ];
+
 const manager = new ReactionRole(client, configuration);
 
 
@@ -32,11 +34,11 @@ for (const file of commandFiles) {
 		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 	}
 }
+
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	const command = interaction.client.commands.get(interaction.commandName);
-
 	if (!command) {
 		console.error(`No command matching ${interaction.commandName} was found.`);
 		return;
@@ -53,4 +55,9 @@ client.on(Events.InteractionCreate, async interaction => {
 		}
 	}
 });
+
+client.once(Events.ClientReady, c => {
+	console.log('Bot Active.');
+});
+
 client.login(token);

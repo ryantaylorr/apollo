@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discordjs-reaction-role": "^3.1.0",
-    "reaction-role": "^5.0.1"
+    "reaction-role": "^5.0.1",
+    "undici": "^5.22.1"
   }
 }
